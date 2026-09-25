@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+    <!-- Arka Plan (Koyu Tema) -->
+    <rect width="512" height="512" rx="110" fill="#050505"/>
+    
+    <!-- Altın Sarısı Çerçeve -->
+    <rect x="25" y="25" width="462" height="462" rx="90" fill="none" stroke="#d4af37" stroke-width="20"/>
+
+    <!-- Marka Baş Harfleri (KO) -->
+    <text x="50%" y="38%" font-family="Arial, sans-serif" font-weight="900" font-size="150" fill="#d4af37" text-anchor="middle" dominant-baseline="middle">KO</text>
+
+    <!-- İndirme Simgesi (Ok ve Çizgi) -->
+    <path d="M256 265v95m-50-50l50 50 50-50" stroke="#d4af37" stroke-width="28" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <path d="M176 400h160" stroke="#d4af37" stroke-width="28" stroke-linecap="round"/>
+</svg>
