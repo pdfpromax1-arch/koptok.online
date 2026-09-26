@@ -424,8 +424,46 @@
         }
     });
 </script>
+<script type="text/javascript">
+    function changeLanguage(lang) {
+        if (lang === 'tr') {
+            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        } else {
+            document.cookie = "googtrans=/tr/" + lang + "; path=/";
+        }
+        location.reload();
+    }
+
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'tr',
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+        var getCookie = function(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        };
+        var cookie = getCookie('googtrans');
+        var select = document.getElementById('languageSelect');
+        if (cookie) {
+            var parts = cookie.split('/');
+            var lang = parts[parts.length - 1];
+            if (select && lang) {
+                select.value = lang;
+            }
+        } else {
+            if (select) {
+                select.value = 'tr';
+            }
+        }
+    });
+</script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<div id="google_translate_element" style="display:none;"></div>
+<div id="google_translate_element" style="position: absolute; left: -9999px; visibility: hidden;"></div>
 
 </body>
 </html>
