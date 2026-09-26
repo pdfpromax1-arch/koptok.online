@@ -57,6 +57,15 @@
             top: 0;
             z-index: 1000;
         }
+    /* Google Çeviri gizleme ve temizleme stilleri */
+    .goog-te-banner-frame.skiptranslate { display: none !important; }
+    body { top: 0px !important; }
+    iframe.skiptranslate { display: none !important; }
+    .goog-te-gadget { font-size: 0px !important; }
+    .goog-te-gadget span { display: none !important; }
+    .goog-logo-link, .goog-te-gadget img { display: none !important; }
+    #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+    .goog-text-highlight { background: none !important; box-shadow: none !important; }
 
         .nav-container {
             max-width: 1200px;
@@ -274,6 +283,42 @@
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">KOPTOK.ONLİNE</a>
+<div class="language-dropdown" style="margin-left: auto; margin-right: 10px;">
+    <select id="languageSelect" onchange="changeLanguage(this.value)" style="background: #151515; color: #d4af37; border: 1px solid rgba(212, 175, 55, 0.3); padding: 4px 8px; border-radius: 6px; font-size: 12px; font-weight: bold; outline: none; cursor: pointer;">
+        <option value="tr" selected>🇹🇷 TR</option>
+        <option value="en">🇬🇧 EN</option>
+        <option value="de">🇩🇪 DE</option>
+        <option value="es">🇪🇸 ES</option>
+        <option value="fr">🇫🇷 FR</option>
+        <option value="az">🇦🇿 AZ</option>
+        <option value="ru">🇷🇺 RU</option>
+        <option value="ar">🇸🇦 AR</option>
+        <option value="zh">🇨🇳 ZH</option>
+        <option value="hi">🇮🇳 HI</option>
+        <option value="pt">🇧🇷🇵🇹 PT</option>
+        <option value="id">🇮🇩 ID</option>
+        <option value="vi">🇻🇳 VI</option>
+        <option value="ja">🇯🇵 JA</option>
+        <option value="ko">🇰🇷 KO</option>
+        <option value="it">🇮🇹 IT</option>
+        <option value="th">🇹🇭 TH</option>
+        <option value="fil">🇵🇭 FIL</option>
+        <option value="ur">🇵🇰 UR</option>
+        <option value="bn">🇧🇩 BN</option>
+        <option value="pl">🇵🇱 PL</option>
+        <option value="uk">🇺🇦 UK</option>
+        <option value="nl">🇳🇱 NL</option>
+        <option value="sv">🇸🇪 SV</option>
+        <option value="el">🇬🇷 EL</option>
+        <option value="ro">🇷🇴 RO</option>
+        <option value="cs">🇨🇿 CS</option>
+        <option value="hu">🇭🇺 HU</option>
+        <option value="da">🇩🇰 DA</option>
+        <option value="fi">🇫🇮 FI</option>
+        <option value="ms">🇲🇾 MS</option>
+    </select>
+</div>
+
             <ul class="nav-links">
                 <li><a href="index.html">Ana Sayfa</a></li>
                 <li><a href="hakkimizda.html">Hakkımızda</a></li>
@@ -377,5 +422,48 @@
             mobileMenu.classList.toggle('active');
         });
     </script>
+<script type="text/javascript">
+    function changeLanguage(lang) {
+        var addCookie = function (name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        };
+        addCookie('googtrans', '/tr/' + lang, 1);
+        location.reload();
+    }
+
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'tr',
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+
+    window.addEventListener('DOMContentLoaded', function() {
+        var getCookie = function(name) {
+            var value = "; " + document.cookie;
+            var parts = value.split("; " + name + "=");
+            if (parts.length == 2) return parts.pop().split(";").shift();
+        };
+        var cookie = getCookie('googtrans');
+        if (cookie) {
+            var lang = cookie.split('/')[2];
+            if (lang) {
+                var select = document.getElementById('languageSelect');
+                if (select) {
+                    select.value = lang;
+                }
+            }
+        }
+    });
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div id="google_translate_element" style="position: absolute; left: -9999px; visibility: hidden;"></div>
+
 </body>
 </html>
