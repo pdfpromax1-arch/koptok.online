@@ -721,11 +721,18 @@
 </script>
 <script type="text/javascript">
     function changeLanguage(lang) {
-        if (lang === 'tr') {
-            document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        } else {
+        // Canlı site domainindeki eski çeviri çerezlerini tamamen temizle
+        var host = window.location.hostname;
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + host;
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + host;
+
+        if (lang !== 'tr') {
+            // Seçilen yeni dili hem normal hem de domain çerezine kaydet
             document.cookie = "googtrans=/tr/" + lang + "; path=/";
+            document.cookie = "googtrans=/tr/" + lang + "; path=/; domain=" + host;
         }
+        
         location.reload();
     }
 
