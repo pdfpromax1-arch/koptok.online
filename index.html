@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KOPTOK.ONLİNE - TikTok Video ve Fotoğraf İndirici</title>
+    
     <meta name="description" content="TikTok video ve fotoğraf bağlantılarını filigransız ve hızlı bir şekilde indirin.">
     <link rel="canonical" href="https://koptok.online/">
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -460,6 +461,38 @@
             <a href="iletisim.html">İletişim</a>
         </div>
     </header>
+<style>
+    .ticker-container {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        background: rgba(212, 175, 55, 0.03);
+        border-top: 1px solid rgba(212, 175, 55, 0.15);
+        border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+        padding: 8px 0;
+        margin-bottom: 20px;
+    }
+    .ticker-text {
+        display: inline-block;
+        white-space: nowrap;
+        animation: marquee 20s linear infinite;
+        color: #d4af37;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 2px;
+        opacity: 0.85;
+    }
+    @keyframes marquee {
+        0% { transform: translateX(0%); }
+        100% { transform: translateX(-50%); }
+    }
+</style>
+
+<div class="ticker-container notranslate">
+    <div class="ticker-text">
+        KOPTOK.ONLINE &bull; KOPTOK.ONLINE &bull; KOPTOK.ONLINE &bull; KOPTOK.ONLINE &bull; KOPTOK.ONLINE &bull; KOPTOK.ONLINE &bull; KOPTOK.ONLINE &bull; KOPTOK.ONLINE &bull; 
+    </div>
+</div>
 
     <main>
         <section class="hero-section">
@@ -471,9 +504,14 @@
             <p>TikTok bağlantınızı kolayca indirmeye hazırlayın.</p>
             
             <form class="download-form" id="downloadForm">
-                <div class="input-group">
-                    <input type="text" id="urlInput" placeholder="TikTok video veya fotoğraf bağlantısını buraya yapıştırın..." required>
-                    <button type="button" class="paste-btn" id="pasteBtn">📋 Yapıştır</button>
+<div class="input-group" style="position: relative;">
+    <div style="position: relative; flex: 1; display: flex; align-items: center;">
+        <input type="text" id="urlInput" class="notranslate" placeholder="TikTok video veya fotoğraf bağlantısını buraya yapıştırın ..." oninput="toggleClearButton()" style="width: 100%; padding-right: 35px; background: transparent; border: none; outline: none; color: inherit;" required>
+        <span id="clearInputBtn" onclick="clearInput()" style="position: absolute; right: 12px; top: 50%; transform: translateY(-50%); color: #d4af37; cursor: pointer; font-size: 16px; font-weight: bold; display: none; z-index: 5;">✕</span>
+    </div>
+    <button type="button" class="paste-btn" id="pasteBtn">📋 Yapıştır</button>
+</div>
+
                 </div>
                 <button type="submit" class="submit-btn" id="submitBtn">İndirmeye Başla</button>
             </form>
@@ -752,6 +790,283 @@
 </script>
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <div id="google_translate_element" style="position: absolute; left: -9999px; visibility: hidden;"></div>
+<script type="text/javascript">
+    // 1. Dil Değiştirme Fonksiyonu
+    function changeLanguage(lang) {
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+        document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + document.domain;
+        
+        if (lang !== 'tr') {
+            document.cookie = "googtrans=/tr/" + lang + "; path=/";
+            document.cookie = "googtrans=/tr/" + lang + "; path=/; domain=" + document.domain;
+        }
+        
+        location.reload();
+    }
+
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'tr',
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+
+    // 2. Input Temizleme (X) Fonksiyonları
+    function toggleClearButton() {
+        var input = document.getElementById('urlInput');
+        var btn = document.getElementById('clearInputBtn');
+        if (input && btn) {
+            if (input.value.length > 0) {
+                btn.style.display = 'block';
+            } else {
+                btn.style.display = 'none';
+            }
+        }
+    }
+
+    function clearInput() {
+        var input = document.getElementById('urlInput');
+        if (input) {
+            input.value = '';
+            toggleClearButton();
+            input.focus();
+        }
+    }
+
+    // 3. Sayfa Yüklendiğinde Çalışacak Kontroller
+    window.addEventListener('DOMContentLoaded', function() {
+        // Çeviri dilini seçicide göster
+        var match = document.cookie.match(new RegExp('(^| )googtrans=([^;]+)'));
+        var select = document.getElementById('languageSelect');
+        if (match && select) {
+            var lang = match[2].split('/')[2];
+            if (lang) select.value = lang;
+        } else if (select) {
+            select.value = 'tr';
+        }
+        
+        // Input dolu mu boş mu kontrol et
+        toggleClearButton();
+    });
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+<div id="google_translate_element" style="position: absolute; left: -9999px; visibility: hidden;"></div>
+<style>
+    #scrollToTopBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        background-color: rgba(15, 15, 15, 0.15); /* Çok daha saydam arka plan */
+        backdrop-filter: blur(2px);
+        color: #d4af37;
+        border: 2px solid rgba(212, 175, 55, 0.6); /* Çerçeve de hafif saydamlaştırıldı */
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 9999;
+    }
+    #scrollToTopBtn.show {
+        opacity: 1;
+        visibility: visible;
+    }
+    #scrollToTopBtn:hover {
+        background-color: #d4af37;
+        color: #0f0f0f;
+        border-color: #d4af37;
+        transform: translateY(-3px);
+    }
+</style>
+
+<div id="scrollToTopBtn" onclick="scrollToTop()" title="Yukarı Çık">▲</div>
+
+<script>
+    window.addEventListener('scroll', function() {
+        var btn = document.getElementById('scrollToTopBtn');
+        if (window.scrollY > 250) {
+            btn.classList.add('show');
+        } else {
+            btn.classList.remove('show');
+        }
+    });
+
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+</script>
+<style>
+    #floatingShareContainer {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        z-index: 9998;
+    }
+    #shareMainBtn {
+        width: 45px;
+        height: 45px;
+        background-color: rgba(15, 15, 15, 0.15);
+        backdrop-filter: blur(2px);
+        color: #d4af37;
+        border: 2px solid rgba(212, 175, 55, 0.6);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+    }
+    #shareMainBtn svg {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+        transition: transform 0.3s ease;
+    }
+    #shareMainBtn:hover {
+        background-color: #d4af37;
+        color: #0f0f0f;
+        border-color: #d4af37;
+        transform: translateY(-3px);
+    }
+    #shareMenu {
+        position: absolute;
+        bottom: 60px;
+        left: 0;
+        background: #141414;
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-radius: 12px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(10px);
+        transition: all 0.3s ease;
+        min-width: 160px;
+    }
+    #shareMenu.active {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+    .share-option {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #ddd;
+        text-decoration: none;
+        font-size: 13px;
+        font-weight: 500;
+        padding: 8px 10px;
+        border-radius: 6px;
+        transition: all 0.2s;
+    }
+    .share-option svg {
+        width: 16px;
+        height: 16px;
+        fill: #d4af37;
+        flex-shrink: 0;
+    }
+    .share-option:hover {
+        background: rgba(212, 175, 55, 0.15);
+        color: #d4af37;
+    }
+</style>
+
+<div id="floatingShareContainer">
+    <div id="shareMainBtn" onclick="toggleShareMenu()" title="Paylaş">
+        <!-- Premium Paylaş İkonu -->
+        <svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.15c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92c0-1.61-1.31-2.92-2.92-2.92z"/></svg>
+    </div>
+    <div id="shareMenu">
+        <a href="#" id="shareWhatsapp" class="share-option" target="_blank">
+            <!-- WhatsApp İkonu -->
+            <svg viewBox="0 0 24 24"><path d="M12.04 2c-5.52 0-10 4.48-10 10 0 1.77.46 3.45 1.28 4.9L2 22l5.25-1.34c1.41.77 3.03 1.21 4.79 1.21 5.52 0 10-4.48 10-10s-4.48-10-10-10zm0 18.2c-1.5 0-2.93-.41-4.16-1.14l-.3-.18-3.12.8.83-3.04-.2-.31c-.82-1.28-1.25-2.79-1.25-4.34 0-4.52 3.68-8.2 8.2-8.2s8.2 3.68 8.2 8.2-3.68 8.2-8.2 8.2zm4.52-6.16c-.25-.13-1.47-.72-1.7-.8s-.4-.13-.57.13-.65.8-.8 1c-.15.17-.3.19-.55.06-.25-.13-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.15-.25-.02-.39.11-.52.11-.11.25-.3.38-.45.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45s-.57-1.38-.78-1.89c-.21-.5-.43-.43-.57-.44h-.49c-.17 0-.45.06-.69.32s-.94.92-.94 2.24 1.01 2.58 1.15 2.76c.15.17 1.98 3.02 4.8 4.23.67.29 1.19.46 1.6.59.67.21 1.28.18 1.76.11.54-.08 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/></svg>
+            WhatsApp
+        </a>
+        <a href="#" id="shareTelegram" class="share-option" target="_blank">
+            <!-- Telegram İkonu -->
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.02-1.37-.26-2.03-.48-.82-.27-1.47-.42-1.42-.88.03-.25.38-.51 1.05-.78 4.12-1.79 6.87-2.97 8.25-3.55 3.92-1.65 4.74-1.94 5.28-1.95.12 0 .39.03.56.17.15.12.19.28.21.4-.01.06.01.24-.01.37z"/></svg>
+            Telegram
+        </a>
+        <div class="share-option" onclick="copySiteLink()" style="cursor: pointer;">
+            <!-- Kopyala İkonu -->
+            <svg viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+            Linki Kopyala
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleShareMenu() {
+        var menu = document.getElementById('shareMenu');
+        menu.classList.toggle('active');
+    }
+
+    window.addEventListener('click', function(e) {
+        var container = document.getElementById('floatingShareContainer');
+        if (!container.contains(e.target)) {
+            document.getElementById('shareMenu').classList.remove('active');
+        }
+    });
+
+    window.addEventListener('DOMContentLoaded', function() {
+        var currentUrl = encodeURIComponent(window.location.href);
+        var shareText = encodeURIComponent("KOPTOK.ONLINE - En Hızlı ve Kolay TikTok Video İndirici!");
+        
+        document.getElementById('shareWhatsapp').href = "https://api.whatsapp.com/send?text=" + shareText + "%20" + currentUrl;
+        document.getElementById('shareTelegram').href = "https://t.me/share/url?url=" + currentUrl + "&text=" + shareText;
+    });
+
+    function copySiteLink() {
+        navigator.clipboard.writeText(window.location.href).then(function() {
+            alert("Bağlantı panoya kopyalandı!");
+            document.getElementById('shareMenu').classList.remove('active');
+        });
+    }
+</script>
+<!-- Ana Ekrana Ekle Butonu (Test için görünür) -->
+<div style="text-align: center; margin: 20px 0;">
+    <button id="pwaInstallBtn" onclick="triggerInstall()" style="display: flex; margin: 0 auto; background: rgba(212, 175, 55, 0.15); border: 1px solid #d4af37; color: #d4af37; padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 13px; cursor: pointer; align-items: center; gap: 8px; transition: all 0.3s;">
+        <svg viewBox="0 0 24 24" style="width: 16px; height: 16px; fill: currentColor;"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
+        Ana Ekrana Ekle
+    </button>
+</div>
+
+<script>
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+    });
+
+    function triggerInstall() {
+        if (deferredPrompt) {
+            deferredPrompt.prompt();
+            deferredPrompt.userChoice.then((choiceResult) => {
+                if (choiceResult.outcome === 'accepted') {
+                    console.log('Kullanıcı ana ekrana eklemeyi kabul etti');
+                }
+                deferredPrompt = null;
+            });
+        } else {
+            alert('Tarayıcı menüsünden (sağ üstteki üç nokta) "Ana Ekrana Ekle" veya "Uygulamayı Yükle" seçeneğini kullanarak uygulamayı telefonunuza ekleyebilirsiniz.');
+        }
+    }
+</script>
 
 </body>
 </html>
