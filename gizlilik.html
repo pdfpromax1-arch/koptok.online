@@ -501,7 +501,6 @@
     });
 </script>
 <script type="text/javascript">
-// 1. Google Translate'i başlatan eksik fonksiyon (Olmazsa olmaz!)
 function googleTranslateElementInit() {
     new google.translate.TranslateElement({
         pageLanguage: 'tr',
@@ -509,25 +508,36 @@ function googleTranslateElementInit() {
     }, 'google_translate_element');
 }
 
-// 2. Dil değiştirme ve çerez yönetim fonksiyonu
 function changeLanguage(lang) {
     if (lang === 'zh') {
-        lang = 'zh-CN'; // Çince uyumluluğu için
+        lang = 'zh-CN'; // Çince uyumluluğu
     }
 
-    // Eski çerezleri temizle
+    // Çerezleri tamamen temizle
     document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=." + window.location.hostname;
 
-    // Yeni dili seç (Türkçe değilse)
+    // Yeni dili kaydet
     if (lang !== 'tr') {
         document.cookie = "googtrans=/tr/" + lang + "; path=/;";
         document.cookie = "googtrans=/tr/" + lang + "; path=/; domain=" + window.location.hostname;
     }
 
-    // Sayfayı yenile
     location.reload();
 }
+
+// Sayfa yüklendiğinde çerezdeki dili kontrol et ve menüyü ona göre eşitle
+window.addEventListener('DOMContentLoaded', function() {
+    var match = document.cookie.match(new RegExp('(^|;)googtrans=([^;]+)'));
+    var select = document.getElementById('languageSelect');
+    if (match && select) {
+        var lang = match[2].split('/')[2];
+        if (lang) {
+            select.value = lang;
+        }
+    }
+});
 </script>
 
 <!-- Google Translate Kütüphanesi -->
