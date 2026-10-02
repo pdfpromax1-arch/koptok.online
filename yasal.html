@@ -462,8 +462,41 @@
         }
     });
 </script>
+<script type="text/javascript">
+// 1. Google Translate'i başlatan eksik fonksiyon (Olmazsa olmaz!)
+function googleTranslateElementInit() {
+    new google.translate.TranslateElement({
+        pageLanguage: 'tr',
+        autoDisplay: false
+    }, 'google_translate_element');
+}
+
+// 2. Dil değiştirme ve çerez yönetim fonksiyonu
+function changeLanguage(lang) {
+    if (lang === 'zh') {
+        lang = 'zh-CN'; // Çince uyumluluğu için
+    }
+
+    // Eski çerezleri temizle
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    document.cookie = "googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=" + window.location.hostname;
+
+    // Yeni dili seç (Türkçe değilse)
+    if (lang !== 'tr') {
+        document.cookie = "googtrans=/tr/" + lang + "; path=/;";
+        document.cookie = "googtrans=/tr/" + lang + "; path=/; domain=" + window.location.hostname;
+    }
+
+    // Sayfayı yenile
+    location.reload();
+}
+</script>
+
+<!-- Google Translate Kütüphanesi -->
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-<div id="google_translate_element" style="position: absolute; left: -9999px; visibility: hidden;"></div>
+
+<!-- Google Translate Gizli Widget Alanı -->
+<div id="google_translate_element" style="display:none;"></div>
 
 </body>
 </html>
